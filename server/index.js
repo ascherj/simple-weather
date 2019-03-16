@@ -8,7 +8,7 @@ const bodyParser = require('body-parser');
 
 const app = express();
 
-app.use(express.static(path.join(__dirname, '/../react-client/dist')));
+app.use(express.static(path.join(__dirname, '/../public')));
 
 app.get('/locations', (req, res) => {
   // items.selectAll((err, data) => {

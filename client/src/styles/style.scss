@@ -1,0 +1,19 @@
+body {
+  background-color: lightblue;
+  height: 100vh;
+}
+
+h1 {
+  font-size: 5em;
+}
+
+#app {
+  text-align: center;
+}
+
+.search {
+  input {
+    max-width: 200px;
+    margin-right: 5px;
+  }
+}
