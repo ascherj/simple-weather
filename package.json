@@ -20,6 +20,7 @@
   "dependencies": {
     "@google/maps": "^0.5.5",
     "angular": "^1.6.3",
+    "axios": "^0.18.0",
     "body-parser": "^1.17.2",
     "express": "^4.15.0",
     "jquery": "^3.1.1",
