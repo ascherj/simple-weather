@@ -8,7 +8,7 @@ const Locations = ({ locations }) => {
   const locationComponents = [];
 
   for (let i = 0; i < locations.length; i++) {
-    locationComponents.push(<Location location={locations[i]} />);
+    locationComponents.push(<Location location={locations[i]} key={i} />);
   }
 
   return (
