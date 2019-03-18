@@ -4,8 +4,8 @@ import $ from 'jquery';
 import axios from 'axios';
 import Search from './components/Search';
 import Weather from './components/Weather';
-import LocationList from './components/LocationList';
-import LocationListEntry from './components/LocationListEntry';
+import Locations from './components/Locations';
+import Location from './components/Location';
 
 class App extends React.Component {
   constructor(props) {
@@ -14,14 +14,15 @@ class App extends React.Component {
       currentLocation: '',
       temperature: NaN,
       summary: '',
-      locationList: [],
+      locations: [],
     };
     this.getWeather = this.getWeather.bind(this);
+    this.getLocations = this.getLocations.bind(this);
     this.saveLocation = this.saveLocation.bind(this);
   }
 
   componentDidMount() {
-
+    this.getLocations();
   }
 
   getWeather(location) {
@@ -39,17 +40,30 @@ class App extends React.Component {
       });
   }
 
+  getLocations() {
+    axios.get('http://localhost:3000/locations')
+      .then((response) => {
+        this.setState({
+          locations: response.data,
+        });
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
+
   saveLocation(location) {
-    const { locationList } = this.state;
-    locationList.push(<LocationListEntry location={location} />);
+    const { locations } = this.state;
+    locations.push(<Location location={location} />);
     this.setState({
-      locationList,
+      locations,
     });
   }
 
+
   render() {
     const {
-      currentLocation, temperature, summary, locationList,
+      currentLocation, temperature, summary, locations,
     } = this.state;
 
     return (
@@ -68,7 +82,7 @@ class App extends React.Component {
               />
             </div>
             <div className="column">
-              <LocationList locations={locationList} />
+              <Locations locations={locations} />
             </div>
           </div>
         </div>

@@ -38,6 +38,18 @@ app.get('/weather', (req, res) => {
     });
 });
 
+app.get('/locations', (req, res) => {
+  Location.find()
+    .then((locations) => {
+      const formattedLocations = locations.map(document => document.location);
+      res.json(formattedLocations);
+    })
+    .catch((err) => {
+      console.error('error retrieving locations', err);
+      res.sendStatus(500);
+    });
+});
+
 app.post('/locations', (req, res) => {
   const { location } = req.query;
 
