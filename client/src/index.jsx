@@ -21,9 +21,7 @@ class App extends React.Component {
   }
 
   getWeather(location) {
-    axios.get('http://localhost:3000/weather', {
-      params: { location },
-    })
+    axios.get(`http://localhost:3000/weather?location=${location}`)
       .then((response) => {
         console.log(response);
         this.setState({});
