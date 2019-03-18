@@ -16,10 +16,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '/../public')));
 
 app.get('/weather', (req, res) => {
-  const address = req.query.location;
+  const { location } = req.query;
   let formattedAddress;
 
-  googleMapsRequest(address)
+  googleMapsRequest(location)
     .then((response) => {
       formattedAddress = response.data.results[0].formatted_address;
       const { lat, lng } = response.data.results[0].geometry.location;

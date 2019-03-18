@@ -1,9 +1,9 @@
 const axios = require('axios');
 const { GOOGLE_API_KEY, DARK_SKY_API_KEY } = require('../config/keys');
 
-module.exports.googleMapsRequest = (address) => {
+module.exports.googleMapsRequest = (location) => {
   return new Promise((resolve, reject) => {
-    axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${GOOGLE_API_KEY}`)
+    axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=${GOOGLE_API_KEY}`)
       .then((response) => {
         resolve(response);
       })
