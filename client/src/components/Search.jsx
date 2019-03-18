@@ -9,6 +9,7 @@ export default class Search extends Component {
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
   }
 
   handleInputChange(event) {
@@ -18,13 +19,22 @@ export default class Search extends Component {
     });
   }
 
+  handleKeyPress(event) {
+    const { getWeather } = this.props;
+    const { location } = this.state;
+
+    if (event.key === 'Enter') {
+      getWeather(location);
+    }
+  }
+
   render() {
     const { getWeather } = this.props;
     const { location } = this.state;
 
     return (
       <div className="search">
-        <input className="input" type="text" placeholder="City, state, zip code..." onChange={this.handleInputChange} />
+        <input className="input" type="text" placeholder="City, state, zip code..." onChange={this.handleInputChange} onKeyPress={this.handleKeyPress} />
         <button className="button is-dark" type="button" onClick={() => getWeather(location)}>Submit</button>
       </div>
     );
