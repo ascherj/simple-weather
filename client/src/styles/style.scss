@@ -3,12 +3,9 @@ body {
   height: 100vh;
 }
 
-h1 {
-  font-size: 5em;
-}
-
 #app {
   text-align: center;
+  padding-top: 50px;
 }
 
 .hidden {
@@ -23,5 +20,17 @@ h1 {
 }
 
 .weather {
+  margin-top: 10px;
+
+  > span {
+    vertical-align: middle;
+  }
+
+  button {
+    margin-left: 10px;
+  }
+}
+
+.locationList {
   margin-top: 10px;
 }

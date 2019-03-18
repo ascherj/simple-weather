@@ -4,15 +4,19 @@ import $ from 'jquery';
 import axios from 'axios';
 import Search from './components/Search';
 import Weather from './components/Weather';
+import LocationList from './components/LocationList';
+import LocationListEntry from './components/LocationListEntry';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      location: '',
+      currentLocation: '',
       temperature: undefined,
+      locationList: [],
     };
     this.getWeather = this.getWeather.bind(this);
+    this.saveLocation = this.saveLocation.bind(this);
   }
 
   componentDidMount() {
@@ -24,7 +28,7 @@ class App extends React.Component {
       .then((response) => {
         console.log(response);
         this.setState({
-          location: response.data.formattedAddress,
+          currentLocation: response.data.formattedAddress,
           temperature: response.data.currentWeather.temperature,
         });
       })
@@ -33,14 +37,29 @@ class App extends React.Component {
       });
   }
 
+  saveLocation(location) {
+    const { locationList } = this.state;
+    locationList.push(<LocationListEntry location={location} />);
+    this.setState({
+      locationList,
+    });
+  }
+
   render() {
-    const { location, temperature } = this.state;
+    const { currentLocation, temperature, locationList } = this.state;
 
     return (
-      <div className="section">
-        <h1 className="title">Simple Weather</h1>
-        <Search getWeather={this.getWeather} />
-        <Weather location={location} temperature={temperature} />
+      <div className="container">
+        <div className="columns">
+          <div className="column is-two-thirds">
+            <h1 className="title is-1">Simple Weather</h1>
+            <Search getWeather={this.getWeather} />
+            <Weather location={currentLocation} temperature={temperature} saveLocation={this.saveLocation} />
+          </div>
+          <div className="column">
+            <LocationList locations={locationList} />
+          </div>
+        </div>
       </div>
     );
   }
