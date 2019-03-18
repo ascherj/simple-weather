@@ -1,14 +1,16 @@
 import React from 'react';
 
-const Weather = ({ location, temperature, saveLocation }) => {
+const Weather = ({ location, temperature, summary, saveLocation }) => {
   const classes = `weather ${!temperature ? 'hidden' : ''}`;
 
   return (
-    <div className={classes} >
+    <div className={classes}>
       <span>
         It is currently&nbsp;
         {Math.round(temperature)}
-        &nbsp;degrees in&nbsp;
+        &nbsp;degrees and&nbsp;
+        {summary.toLowerCase()}
+        &nbsp;in&nbsp;
         {location}
         .
       </span>

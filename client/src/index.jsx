@@ -12,7 +12,8 @@ class App extends React.Component {
     super(props);
     this.state = {
       currentLocation: '',
-      temperature: undefined,
+      temperature: NaN,
+      summary: '',
       locationList: [],
     };
     this.getWeather = this.getWeather.bind(this);
@@ -30,6 +31,7 @@ class App extends React.Component {
         this.setState({
           currentLocation: response.data.formattedAddress,
           temperature: response.data.currentWeather.temperature,
+          summary: response.data.currentWeather.summary,
         });
       })
       .catch((err) => {
@@ -46,7 +48,9 @@ class App extends React.Component {
   }
 
   render() {
-    const { currentLocation, temperature, locationList } = this.state;
+    const {
+      currentLocation, temperature, summary, locationList,
+    } = this.state;
 
     return (
       <div className="container">
@@ -54,7 +58,12 @@ class App extends React.Component {
           <div className="column is-two-thirds">
             <h1 className="title is-1">Simple Weather</h1>
             <Search getWeather={this.getWeather} />
-            <Weather location={currentLocation} temperature={temperature} saveLocation={this.saveLocation} />
+            <Weather
+              location={currentLocation}
+              temperature={temperature}
+              summary={summary}
+              saveLocation={this.saveLocation}
+            />
           </div>
           <div className="column">
             <LocationList locations={locationList} />
