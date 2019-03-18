@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const { googleMapsRequest, darkSkyRequest } = require('./utils');
+const Location = require('../db/Location');
 
 // UNCOMMENT THE DATABASE YOU'D LIKE TO USE
 // var items = require('../database-mysql');
@@ -33,6 +34,24 @@ app.get('/weather', (req, res) => {
       res.json({ currentWeather, formattedAddress });
     })
     .catch(() => {
+      res.sendStatus(500);
+    });
+});
+
+app.post('/locations', (req, res) => {
+  const { location } = req.query;
+
+  const newLocation = new Location({
+    location,
+  });
+
+  newLocation.save()
+    .then(() => {
+      console.log('location saved');
+      res.send('location saved');
+    })
+    .catch((err) => {
+      console.error('error saving location', err);
       res.sendStatus(500);
     });
 });

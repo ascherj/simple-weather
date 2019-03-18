@@ -1,31 +1,11 @@
-var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/test');
+const mongoose = require('mongoose');
 
-var db = mongoose.connection;
+const mongoUri = 'mongodb://localhost/simple-weather';
 
-db.on('error', function() {
-  console.log('mongoose connection error');
-});
+mongoose.connect(mongoUri, { useNewUrlParser: true, useCreateIndex: true });
+const db = mongoose.connection;
 
-db.once('open', function() {
-  console.log('mongoose connected successfully');
-});
+db.on('error', () => console.error('error connecting to mongodb'));
+db.once('open', () => console.log('successfully connected to mongodb'));
 
-var itemSchema = mongoose.Schema({
-  quantity: Number,
-  description: String
-});
-
-var Item = mongoose.model('Item', itemSchema);
-
-var selectAll = function(callback) {
-  Item.find({}, function(err, items) {
-    if(err) {
-      callback(err, null);
-    } else {
-      callback(null, items);
-    }
-  });
-};
-
-module.exports.selectAll = selectAll;
+module.exports = db;
