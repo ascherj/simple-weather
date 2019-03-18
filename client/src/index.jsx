@@ -53,13 +53,14 @@ class App extends React.Component {
   }
 
   saveLocation(location) {
-    const { locations } = this.state;
-    locations.push(<Location location={location} />);
-    this.setState({
-      locations,
-    });
+    axios.post(`http://localhost:3000/locations?location=${location}`)
+      .then(() => {
+        this.getLocations();
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   }
-
 
   render() {
     const {
