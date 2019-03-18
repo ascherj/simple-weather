@@ -3,16 +3,15 @@ import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import axios from 'axios';
 import Search from './components/Search';
+import Weather from './components/Weather';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      lat: undefined,
-      lng: undefined,
+      location: '',
       temperature: undefined,
     };
-
     this.getWeather = this.getWeather.bind(this);
   }
 
@@ -24,7 +23,10 @@ class App extends React.Component {
     axios.get(`http://localhost:3000/weather?location=${location}`)
       .then((response) => {
         console.log(response);
-        this.setState({});
+        this.setState({
+          location: response.data.formattedAddress,
+          temperature: response.data.currentWeather.temperature,
+        });
       })
       .catch((err) => {
         console.error(err);
@@ -32,10 +34,13 @@ class App extends React.Component {
   }
 
   render() {
+    const { location, temperature } = this.state;
+
     return (
       <div className="section">
         <h1 className="title">Simple Weather</h1>
         <Search getWeather={this.getWeather} />
+        <Weather location={location} temperature={temperature} />
       </div>
     );
   }

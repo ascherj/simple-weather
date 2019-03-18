@@ -23,7 +23,7 @@ export default class Search extends Component {
     const { location } = this.state;
 
     return (
-      <div className="container search">
+      <div className="search">
         <input className="input" type="text" placeholder="City, state, zip code..." onChange={this.handleInputChange} />
         <button className="button is-dark" type="button" onClick={() => getWeather(location)}>Submit</button>
       </div>

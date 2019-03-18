@@ -11,9 +11,17 @@ h1 {
   text-align: center;
 }
 
+.hidden {
+  display: none;
+}
+
 .search {
   input {
     max-width: 200px;
     margin-right: 5px;
   }
+}
+
+.weather {
+  margin-top: 10px;
 }
