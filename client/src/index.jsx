@@ -77,7 +77,7 @@ class App extends React.Component {
               <Search getWeather={this.getWeather} />
               <Weather
                 location={currentLocation}
-                temperature={temperature}
+                temperature={Math.round(temperature)}
                 summary={summary}
                 saveLocation={this.saveLocation}
               />

@@ -19,17 +19,26 @@ body {
 }
 
 .weather {
-  margin-top: 10px;
+  margin-top: 15px;
 
   > span {
     vertical-align: middle;
+    font-size: 28px;
+  }
+
+  .temperature,
+  .summary,
+  .location {
+    font-size: 20px;
+    font-weight: bold;
   }
 
   button {
     margin-left: 10px;
+    vertical-align: middle;
   }
 }
 
-.locationList {
+.locations {
   margin-top: 10px;
 }

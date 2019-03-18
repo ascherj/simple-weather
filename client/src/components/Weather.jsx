@@ -7,10 +7,9 @@ const Weather = ({ location, temperature, summary, saveLocation }) => {
   return (
     <div className={classes}>
       <span>
-        It is currently&nbsp;
-        {Math.round(temperature)}
-        &nbsp;degrees and&nbsp;
-        {summary.toLowerCase()}
+        <strong>{temperature}</strong>
+        &deg; and&nbsp;
+        <strong>{summary.toLowerCase()}</strong>
         &nbsp;in&nbsp;
         {location}
         .
