@@ -17,18 +17,20 @@ app.use(express.static(path.join(__dirname, '/../public')));
 
 app.get('/weather', (req, res) => {
   const address = req.query.location;
+  let formattedAddress;
 
   googleMapsRequest(address)
     .then((response) => {
+      formattedAddress = response.data.results[0].formatted_address;
       const { lat, lng } = response.data.results[0].geometry.location;
-      console.log(`Location: ${address}`);
+      console.log(`Location: ${formattedAddress}`);
       console.log(`Latitude: ${lat}`);
       console.log(`Longitude: ${lng}`);
       return darkSkyRequest(lat, lng);
     })
     .then((response) => {
       const forecast = response.data.currently;
-      res.json(forecast);
+      res.json({ forecast, formattedAddress });
     })
     .catch(() => {
       res.sendStatus(500);
