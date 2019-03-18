@@ -29,8 +29,8 @@ app.get('/weather', (req, res) => {
       return darkSkyRequest(lat, lng);
     })
     .then((response) => {
-      const forecast = response.data.currently;
-      res.json({ forecast, formattedAddress });
+      const currentWeather = response.data.currently;
+      res.json({ currentWeather, formattedAddress });
     })
     .catch(() => {
       res.sendStatus(500);
