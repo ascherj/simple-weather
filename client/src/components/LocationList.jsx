@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const LocationList = ({ locations }) => {
   const classes = `locationList ${!locations.length ? 'hidden' : ''}`;
@@ -9,6 +10,14 @@ const LocationList = ({ locations }) => {
       {locations}
     </div>
   );
+};
+
+LocationList.propTypes = {
+  locations: PropTypes.instanceOf(Array),
+};
+
+LocationList.defaultProps = {
+  locations: [],
 };
 
 export default LocationList;

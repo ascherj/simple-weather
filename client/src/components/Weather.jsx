@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Weather = ({ location, temperature, summary, saveLocation }) => {
   const classes = `weather ${!temperature ? 'hidden' : ''}`;
@@ -24,6 +25,20 @@ const Weather = ({ location, temperature, summary, saveLocation }) => {
       </button>
     </div>
   );
+};
+
+Weather.propTypes = {
+  location: PropTypes.string,
+  temperature: PropTypes.number,
+  summary: PropTypes.string,
+  saveLocation: PropTypes.func,
+};
+
+Weather.defaultProps = {
+  location: '',
+  temperature: NaN,
+  summary: '',
+  saveLocation: () => {},
 };
 
 export default Weather;

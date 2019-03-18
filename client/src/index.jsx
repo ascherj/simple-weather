@@ -53,20 +53,23 @@ class App extends React.Component {
     } = this.state;
 
     return (
-      <div className="container">
-        <div className="columns">
-          <div className="column is-two-thirds">
-            <h1 className="title is-1">Simple Weather</h1>
-            <Search getWeather={this.getWeather} />
-            <Weather
-              location={currentLocation}
-              temperature={temperature}
-              summary={summary}
-              saveLocation={this.saveLocation}
-            />
-          </div>
-          <div className="column">
-            <LocationList locations={locationList} />
+      <div className="section">
+        <div className="container">
+          <div className="columns">
+            <div className="column" />
+            <div className="column is-three-fifths">
+              <h1 className="title is-1">Simple Weather</h1>
+              <Search getWeather={this.getWeather} />
+              <Weather
+                location={currentLocation}
+                temperature={temperature}
+                summary={summary}
+                saveLocation={this.saveLocation}
+              />
+            </div>
+            <div className="column">
+              <LocationList locations={locationList} />
+            </div>
           </div>
         </div>
       </div>
