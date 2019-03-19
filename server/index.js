@@ -23,8 +23,8 @@ app.get('/weather', (req, res) => {
       return darkSkyRequest(lat, lng);
     })
     .then((response) => {
-      const currentWeather = response.data.currently;
-      res.json({ currentWeather, formattedAddress });
+      const { currently, hourly } = response.data;
+      res.json({ currently, hourly, formattedAddress });
     })
     .catch(() => {
       res.sendStatus(500);

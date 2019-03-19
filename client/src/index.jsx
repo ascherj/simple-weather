@@ -12,9 +12,11 @@ class App extends React.Component {
     this.state = {
       currentLocation: '',
       temperature: NaN,
-      summary: '',
+      currentlySummary: '',
+      hourlySummary: '',
       locations: [],
       icon: '',
+
     };
     this.getWeather = this.getWeather.bind(this);
     this.getLocations = this.getLocations.bind(this);
@@ -32,9 +34,10 @@ class App extends React.Component {
         console.log(response);
         this.setState({
           currentLocation: response.data.formattedAddress,
-          temperature: response.data.currentWeather.temperature,
-          summary: response.data.currentWeather.summary,
-          icon: response.data.currentWeather.icon,
+          temperature: response.data.currently.temperature,
+          currentlySummary: response.data.currently.summary,
+          hourlySummary: response.data.hourly.summary,
+          icon: response.data.currently.icon,
         });
       })
       .catch((err) => {
@@ -76,7 +79,7 @@ class App extends React.Component {
 
   render() {
     const {
-      currentLocation, temperature, summary, locations, icon,
+      currentLocation, temperature, currentlySummary, hourlySummary, locations, icon,
     } = this.state;
 
     const mainColumnClasses = `column ${!locations.length ? 'is-full' : 'is-two-thirds'}`;
@@ -92,7 +95,8 @@ class App extends React.Component {
               <Weather
                 location={currentLocation}
                 temperature={Math.round(temperature)}
-                summary={summary}
+                currentlySummary={currentlySummary}
+                hourlySummary={hourlySummary}
                 saveLocation={this.saveLocation}
                 isSaved={locations.includes(currentLocation)}
               />

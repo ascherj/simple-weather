@@ -27,16 +27,13 @@ body {
     font-size: 28px;
   }
 
-  .temperature,
-  .summary,
-  .location {
-    font-size: 20px;
-    font-weight: bold;
-  }
-
   button {
     margin-left: 10px;
     vertical-align: middle;
+  }
+
+  .hourly {
+    font-size: 18px;
   }
 }
 
