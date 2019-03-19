@@ -16,12 +16,12 @@ class App extends React.Component {
       hourlySummary: '',
       locations: [],
       icon: '',
-
     };
     this.getWeather = this.getWeather.bind(this);
     this.getLocations = this.getLocations.bind(this);
     this.saveLocation = this.saveLocation.bind(this);
     this.deleteLocation = this.deleteLocation.bind(this);
+    this.updateBackgroundColor = this.updateBackgroundColor.bind(this);
   }
 
   componentDidMount() {
@@ -38,6 +38,8 @@ class App extends React.Component {
           currentlySummary: response.data.currently.summary,
           hourlySummary: response.data.hourly.summary,
           icon: response.data.currently.icon,
+        }, () => {
+          this.updateBackgroundColor();
         });
       })
       .catch((err) => {
@@ -75,6 +77,24 @@ class App extends React.Component {
       .catch((err) => {
         console.error(err);
       });
+  }
+
+  updateBackgroundColor() {
+    const { temperature } = this.state;
+    let color;
+
+    if (temperature < 20) color = 'temp1';
+    else if (temperature < 30) color = 'temp2';
+    else if (temperature < 40) color = 'temp3';
+    else if (temperature < 50) color = 'temp4';
+    else if (temperature < 60) color = 'temp5';
+    else if (temperature < 70) color = 'temp6';
+    else if (temperature < 80) color = 'temp7';
+    else if (temperature < 90) color = 'temp8';
+    else if (temperature < 100) color = 'temp9';
+    else color = 'temp10';
+
+    document.body.className = color;
   }
 
   render() {
