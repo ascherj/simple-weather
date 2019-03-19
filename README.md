@@ -3,6 +3,7 @@
 _A simple weather application._
 
 **Front-end**: React, Bulma
+
 **Back-end**: Node, Express, MongoDB
 
 ## Installation
