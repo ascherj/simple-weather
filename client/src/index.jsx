@@ -18,6 +18,7 @@ class App extends React.Component {
     this.getWeather = this.getWeather.bind(this);
     this.getLocations = this.getLocations.bind(this);
     this.saveLocation = this.saveLocation.bind(this);
+    this.deleteLocation = this.deleteLocation.bind(this);
   }
 
   componentDidMount() {
@@ -61,6 +62,16 @@ class App extends React.Component {
       });
   }
 
+  deleteLocation(location) {
+    axios.delete(`http://localhost:3000/locations?location=${location}`)
+      .then(() => {
+        this.getLocations();
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
+
   render() {
     const {
       currentLocation, temperature, summary, locations,
@@ -83,7 +94,11 @@ class App extends React.Component {
               />
             </div>
             <div className="column">
-              <Locations locations={locations} getWeather={this.getWeather} />
+              <Locations
+                locations={locations}
+                getWeather={this.getWeather}
+                deleteLocation={this.deleteLocation}
+              />
             </div>
           </div>
         </div>

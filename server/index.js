@@ -68,6 +68,20 @@ app.post('/locations', (req, res) => {
     });
 });
 
+app.delete('/locations', (req, res) => {
+  const { location } = req.query;
+
+  Location.deleteOne({ location })
+    .then(() => {
+      console.log('location deleted');
+      res.send('location deleted');
+    })
+    .catch((err) => {
+      console.error('error deleting location', err);
+      res.sendStatus(500);
+    });
+});
+
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
 });
