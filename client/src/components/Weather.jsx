@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Weather = ({ location, temperature, summary, saveLocation }) => {
-  const classes = `weather ${!temperature ? 'hidden' : ''}`;
+const Weather = ({ location, temperature, summary, saveLocation, isSaved }) => {
+  const componentClasses = `weather ${!temperature ? 'hidden' : ''}`;
+  const buttonClasses = `button is-small is-link is-outlined ${isSaved ? 'hidden' : ''}`;
 
   return (
-    <div className={classes}>
+    <div className={componentClasses}>
       <span>
         <strong>
           {temperature}
@@ -17,7 +18,7 @@ const Weather = ({ location, temperature, summary, saveLocation }) => {
         {location}
         .
       </span>
-      <button type="button" className="button is-small is-link is-outlined" onClick={() => saveLocation(location)}>
+      <button type="button" className={buttonClasses} onClick={() => saveLocation(location)}>
         <span className="icon is-small">
           <i className="fas fa-check" />
         </span>
@@ -34,6 +35,7 @@ Weather.propTypes = {
   temperature: PropTypes.number,
   summary: PropTypes.string,
   saveLocation: PropTypes.func,
+  isSaved: PropTypes.bool,
 };
 
 Weather.defaultProps = {
@@ -41,6 +43,7 @@ Weather.defaultProps = {
   temperature: NaN,
   summary: '',
   saveLocation: () => {},
+  isSaved: false,
 };
 
 export default Weather;

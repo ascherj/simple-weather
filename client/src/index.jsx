@@ -5,7 +5,6 @@ import axios from 'axios';
 import Search from './components/Search';
 import Weather from './components/Weather';
 import Locations from './components/Locations';
-import Location from './components/Location';
 
 class App extends React.Component {
   constructor(props) {
@@ -80,6 +79,7 @@ class App extends React.Component {
                 temperature={Math.round(temperature)}
                 summary={summary}
                 saveLocation={this.saveLocation}
+                isSaved={locations.includes(currentLocation)}
               />
             </div>
             <div className="column">
