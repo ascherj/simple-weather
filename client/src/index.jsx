@@ -77,12 +77,13 @@ class App extends React.Component {
       currentLocation, temperature, summary, locations,
     } = this.state;
 
+    const mainColumnClasses = `column ${!locations.length ? 'is-full' : 'is-two-thirds'}`;
+
     return (
       <div className="section">
         <div className="container">
           <div className="columns">
-            {/* <div className="column" /> */}
-            <div className="column is-two-thirds">
+            <div className={mainColumnClasses}>
               <h1 className="title is-1">Simple Weather</h1>
               <Search getWeather={this.getWeather} />
               <Weather
