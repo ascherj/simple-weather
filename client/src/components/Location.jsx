@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Location = ({ location }) => {
+const Location = ({ location, getWeather }) => {
   return (
     <li className="location">
-      <span>{location}</span>
+      <button type="button" className="button location-name is-outlined" onClick={() => getWeather(location)}>
+        {location}
+      </button>
       &nbsp;
       <button type="button" className="button is-small is-danger is-outlined">
         <span className="icon is-small">

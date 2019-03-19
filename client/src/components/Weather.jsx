@@ -7,8 +7,11 @@ const Weather = ({ location, temperature, summary, saveLocation }) => {
   return (
     <div className={classes}>
       <span>
-        <strong>{temperature}</strong>
-        &deg; and&nbsp;
+        <strong>
+          {temperature}
+          &deg;F&nbsp;
+        </strong>
+        and&nbsp;
         <strong>{summary.toLowerCase()}</strong>
         &nbsp;in&nbsp;
         {location}

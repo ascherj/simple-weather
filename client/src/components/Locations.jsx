@@ -2,13 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Location from './Location';
 
-const Locations = ({ locations }) => {
+const Locations = ({ locations, getWeather }) => {
   const classes = `locations ${!locations.length ? 'hidden' : ''}`;
 
   const locationComponents = [];
 
   for (let i = 0; i < locations.length; i++) {
-    locationComponents.push(<Location location={locations[i]} key={i} />);
+    locationComponents.push(<Location location={locations[i]} getWeather={getWeather} key={i} />);
   }
 
   return (

@@ -51,7 +51,13 @@ body {
     vertical-align: middle;
   }
 
-  button {
+  button.location-name {
+    width: 200px;
+    height: auto;
+    white-space: normal;
+  }
+
+  button.is-danger {
     border: 0;
   }
 }

@@ -83,7 +83,7 @@ class App extends React.Component {
               />
             </div>
             <div className="column">
-              <Locations locations={locations} />
+              <Locations locations={locations} getWeather={this.getWeather} />
             </div>
           </div>
         </div>
