@@ -1,5 +1,5 @@
 body {
-  background-color: lightblue;
+  background-color: #CCFFFF;
   height: 100vh;
 }
 
@@ -41,4 +41,17 @@ body {
 
 .locations {
   margin-top: 10px;
+}
+
+.location {
+  margin-bottom: 10px;
+
+  span {
+    margin-right: 5px;
+    vertical-align: middle;
+  }
+
+  button {
+    border: 0;
+  }
 }

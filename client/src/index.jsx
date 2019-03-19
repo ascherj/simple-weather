@@ -71,8 +71,8 @@ class App extends React.Component {
       <div className="section">
         <div className="container">
           <div className="columns">
-            <div className="column" />
-            <div className="column is-three-fifths">
+            {/* <div className="column" /> */}
+            <div className="column is-two-thirds">
               <h1 className="title is-1">Simple Weather</h1>
               <Search getWeather={this.getWeather} />
               <Weather
