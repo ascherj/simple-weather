@@ -1,7 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Weather = ({ location, temperature, summary, saveLocation, isSaved }) => {
+const Weather = (props) => {
+  const {
+    location, temperature, summary, saveLocation, isSaved,
+  } = props;
   const componentClasses = `weather ${!temperature ? 'hidden' : ''}`;
   const buttonClasses = `button is-small is-link is-outlined ${isSaved ? 'hidden' : ''}`;
 
