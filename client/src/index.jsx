@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import $ from 'jquery';
 import axios from 'axios';
 import Search from './components/Search';
 import Weather from './components/Weather';
@@ -28,7 +27,6 @@ class App extends React.Component {
   getWeather(location) {
     axios.get(`http://localhost:3000/weather?location=${location}`)
       .then((response) => {
-        console.log(response);
         this.setState({
           currentLocation: response.data.formattedAddress,
           temperature: response.data.currentWeather.temperature,

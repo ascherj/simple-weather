@@ -4,10 +4,6 @@ const bodyParser = require('body-parser');
 const { googleMapsRequest, darkSkyRequest } = require('./utils');
 const Location = require('../db/Location');
 
-// UNCOMMENT THE DATABASE YOU'D LIKE TO USE
-// var items = require('../database-mysql');
-// var items = require('../database-mongo');
-
 const app = express();
 const PORT = 3000;
 
@@ -24,9 +20,6 @@ app.get('/weather', (req, res) => {
     .then((response) => {
       formattedAddress = response.data.results[0].formatted_address;
       const { lat, lng } = response.data.results[0].geometry.location;
-      console.log(`Location: ${formattedAddress}`);
-      console.log(`Latitude: ${lat}`);
-      console.log(`Longitude: ${lng}`);
       return darkSkyRequest(lat, lng);
     })
     .then((response) => {

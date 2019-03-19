@@ -13,7 +13,6 @@ export default class Search extends Component {
   }
 
   handleInputChange(event) {
-    console.log(event.target.value);
     this.setState({
       location: event.target.value,
     });
