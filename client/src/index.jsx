@@ -4,6 +4,7 @@ import axios from 'axios';
 import Search from './components/Search';
 import Weather from './components/Weather';
 import Locations from './components/Locations';
+import Skycon from './components/Skycon';
 
 class App extends React.Component {
   constructor(props) {
@@ -13,6 +14,7 @@ class App extends React.Component {
       temperature: NaN,
       summary: '',
       locations: [],
+      icon: '',
     };
     this.getWeather = this.getWeather.bind(this);
     this.getLocations = this.getLocations.bind(this);
@@ -27,10 +29,12 @@ class App extends React.Component {
   getWeather(location) {
     axios.get(`http://localhost:3000/weather?location=${location}`)
       .then((response) => {
+        console.log(response);
         this.setState({
           currentLocation: response.data.formattedAddress,
           temperature: response.data.currentWeather.temperature,
           summary: response.data.currentWeather.summary,
+          icon: response.data.currentWeather.icon,
         });
       })
       .catch((err) => {
@@ -72,7 +76,7 @@ class App extends React.Component {
 
   render() {
     const {
-      currentLocation, temperature, summary, locations,
+      currentLocation, temperature, summary, locations, icon,
     } = this.state;
 
     const mainColumnClasses = `column ${!locations.length ? 'is-full' : 'is-two-thirds'}`;
@@ -83,6 +87,7 @@ class App extends React.Component {
           <div className="columns">
             <div className={mainColumnClasses}>
               <h1 className="title is-1">Simple Weather</h1>
+              <Skycon icon={icon} />
               <Search getWeather={this.getWeather} />
               <Weather
                 location={currentLocation}
