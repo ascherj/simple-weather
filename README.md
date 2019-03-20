@@ -2,6 +2,9 @@
 
 *A simple weather application.*
 
+![Quick glance at the current and upcoming weather](./screenshots/screenshot1.png?raw=true)
+
+
 **Front-end**: React, [Bulma](https://bulma.io/), [Skycons](https://github.com/darkskyapp/skycons)
 
 **Back-end**: Node, Express, MongoDB

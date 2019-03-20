@@ -2,7 +2,7 @@ import React from 'react';
 
 const Skycon = ({ icon }) => {
   const classes = !icon ? 'hidden' : '';
-  let skycons = new Skycons({ 'color': 'black' });
+  let skycons = new Skycons({ 'color': '#363636' });
   skycons.add('skycon', icon);
   skycons.play();
 
