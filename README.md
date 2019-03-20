@@ -1,12 +1,14 @@
-# simple-weather
+# Simple Weather
 
-_A simple weather application._
+*A simple weather application.*
 
-**Front-end**: React, Bulma
+**Front-end**: React, [Bulma](https://bulma.io/), [Skycons](https://github.com/darkskyapp/skycons)
 
 **Back-end**: Node, Express, MongoDB
 
 ## Installation
+***Note**: For Simple Weather's current implementation, you will need to supply valid keys for the Google Maps and Dark Sky APIs.*
+
 1. Fork/clone the repo
 2. Run `npm install` from the root directory
 3. Run `npm run react-dev` to build webpack
@@ -14,4 +16,4 @@ _A simple weather application._
 5. Start the `mongod` process
 6. Run `npm start` to start the server
 7. Navigate a browser to `http://localhost:3000`
-8. Have fun.
+8. Have fun
