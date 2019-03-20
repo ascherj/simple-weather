@@ -2,7 +2,7 @@
 
 *A simple weather application.*
 
-![Quick glance at the current and upcoming weather](./screenshots/screenshot1.png?raw=true)
+![Quick glance at the current and upcoming weather](./screenshots/screenshot.png?raw=true)
 
 
 **Front-end**: React, [Bulma](https://bulma.io/), [Skycons](https://github.com/darkskyapp/skycons)
