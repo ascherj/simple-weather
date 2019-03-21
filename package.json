@@ -21,7 +21,6 @@
     "axios": "^0.18.0",
     "body-parser": "^1.17.2",
     "express": "^4.15.0",
-    "mongoose": "^5.4.19",
     "node-sass": "^4.11.0",
     "prop-types": "^15.7.2",
     "react": "^15.4.2",
