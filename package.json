@@ -4,9 +4,11 @@
   "description": "A simple weather app.",
   "main": "index.js",
   "scripts": {
-    "react-dev": "webpack -d --watch",
-    "start": "nodemon server/index.js",
-    "build-sass": "node-sass --watch ./client/src/styles/style.scss ./public/style.css"
+    "webpack:build:dev": "webpack -d --watch",
+    "webpack:build": "webpack -p",
+    "sass:build:dev": "node-sass --watch ./client/src/styles/style.scss ./public/style.css",
+    "sass:build": "node-sass ./client/src/styles/style.scss ./public/style.css",
+    "start": "node server/index.js"
   },
   "author": "Jake Ascher",
   "license": "ISC",
@@ -25,5 +27,8 @@
     "prop-types": "^15.7.2",
     "react": "^15.4.2",
     "react-dom": "^15.4.2"
+  },
+  "engines": {
+    "node": "10.x"
   }
 }

@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const { googleMapsRequest, darkSkyRequest } = require('./utils');
 
 const app = express();
-const PORT = 3000;
+const port = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -30,6 +30,6 @@ app.get('/weather', (req, res) => {
     });
 });
 
-app.listen(PORT, () => {
-  console.log(`listening on port ${PORT}`);
+app.listen(port, () => {
+  console.log(`listening on port ${port}`);
 });

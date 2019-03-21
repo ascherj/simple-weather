@@ -1,0 +1,61 @@
+body {
+  background-color: #ebebeb;
+  height: 100vh; }
+  body.temp1 {
+    background-color: rgba(0, 0, 255, 0.3); }
+  body.temp2 {
+    background-color: rgba(0, 115, 255, 0.3); }
+  body.temp3 {
+    background-color: rgba(0, 225, 255, 0.3); }
+  body.temp4 {
+    background-color: rgba(0, 255, 170, 0.3); }
+  body.temp5 {
+    background-color: rgba(0, 255, 55, 0.3); }
+  body.temp6 {
+    background-color: rgba(55, 255, 0, 0.3); }
+  body.temp7 {
+    background-color: rgba(170, 255, 0, 0.3); }
+  body.temp8 {
+    background-color: rgba(255, 225, 0, 0.3); }
+  body.temp9 {
+    background-color: rgba(255, 115, 0, 0.3); }
+  body.temp10 {
+    background-color: rgba(255, 0, 0, 0.3); }
+
+#app {
+  text-align: center; }
+
+.hidden {
+  display: none !important; }
+
+.search {
+  margin-top: 25px; }
+  .search input {
+    max-width: 200px;
+    margin-right: 5px; }
+
+.weather {
+  margin-top: 15px; }
+  .weather > span {
+    vertical-align: middle;
+    font-size: 28px; }
+  .weather button {
+    margin-left: 10px;
+    vertical-align: middle; }
+  .weather .hourly {
+    font-size: 18px; }
+
+.locations {
+  margin-top: 10px; }
+
+.location {
+  margin-bottom: 10px; }
+  .location span {
+    margin-right: 5px;
+    vertical-align: middle; }
+  .location button.location-name {
+    width: 200px;
+    height: auto;
+    white-space: normal; }
+  .location button.is-danger {
+    border: 0; }
