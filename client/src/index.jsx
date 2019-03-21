@@ -18,15 +18,12 @@ class App extends React.Component {
       icon: '',
     };
     this.getWeather = this.getWeather.bind(this);
-    this.getLocations = this.getLocations.bind(this);
     this.saveLocation = this.saveLocation.bind(this);
     this.deleteLocation = this.deleteLocation.bind(this);
     this.updateBackgroundColor = this.updateBackgroundColor.bind(this);
   }
 
-  componentDidMount() {
-    this.getLocations();
-  }
+  componentDidMount() {}
 
   getWeather(location) {
     axios.get(`http://localhost:3000/weather?location=${location}`)
@@ -47,36 +44,21 @@ class App extends React.Component {
       });
   }
 
-  getLocations() {
-    axios.get('http://localhost:3000/locations')
-      .then((response) => {
-        this.setState({
-          locations: response.data,
-        });
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  }
-
   saveLocation(location) {
-    axios.post(`http://localhost:3000/locations?location=${location}`)
-      .then(() => {
-        this.getLocations();
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    const { locations } = this.state;
+    locations.push(location);
+    this.setState({
+      locations,
+    });
   }
 
   deleteLocation(location) {
-    axios.delete(`http://localhost:3000/locations?location=${location}`)
-      .then(() => {
-        this.getLocations();
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    const { locations } = this.state;
+    const indexToDelete = locations.indexOf(location);
+    locations.splice(indexToDelete, 1);
+    this.setState({
+      locations,
+    });
   }
 
   updateBackgroundColor() {

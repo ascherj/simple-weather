@@ -2,7 +2,6 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const { googleMapsRequest, darkSkyRequest } = require('./utils');
-const Location = require('../db/Location');
 
 const app = express();
 const PORT = 3000;
@@ -27,50 +26,6 @@ app.get('/weather', (req, res) => {
       res.json({ currently, hourly, formattedAddress });
     })
     .catch(() => {
-      res.sendStatus(500);
-    });
-});
-
-app.get('/locations', (req, res) => {
-  Location.find()
-    .then((locations) => {
-      const formattedLocations = locations.map(document => document.location);
-      res.json(formattedLocations);
-    })
-    .catch((err) => {
-      console.error('error retrieving locations', err);
-      res.sendStatus(500);
-    });
-});
-
-app.post('/locations', (req, res) => {
-  const { location } = req.query;
-
-  const newLocation = new Location({
-    location,
-  });
-
-  newLocation.save()
-    .then(() => {
-      console.log('location saved');
-      res.send('location saved');
-    })
-    .catch((err) => {
-      console.error('error saving location', err);
-      res.sendStatus(500);
-    });
-});
-
-app.delete('/locations', (req, res) => {
-  const { location } = req.query;
-
-  Location.deleteOne({ location })
-    .then(() => {
-      console.log('location deleted');
-      res.send('location deleted');
-    })
-    .catch((err) => {
-      console.error('error deleting location', err);
       res.sendStatus(500);
     });
 });
