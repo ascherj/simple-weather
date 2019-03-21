@@ -26,7 +26,7 @@ class App extends React.Component {
   componentDidMount() {}
 
   getWeather(location) {
-    axios.get(`https://young-earth-72309.herokuapp.com/weather?location=${location}`)
+    axios.get(`/weather?location=${location}`)
       .then((response) => {
         console.log(response);
         this.setState({
