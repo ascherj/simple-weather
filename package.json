@@ -4,9 +4,13 @@
   "description": "A simple weather app.",
   "main": "index.js",
   "scripts": {
-    "react-dev": "webpack -d --watch",
-    "start": "nodemon server/index.js",
-    "build-sass": "node-sass --watch ./client/src/styles/style.scss ./public/style.css"
+    "webpack-build-dev": "webpack -d --watch",
+    "webpack-build": "webpack -p",
+    "sass-build-dev": "node-sass --watch ./client/src/styles/style.scss ./public/style.css",
+    "sass-build": "node-sass ./client/src/styles/style.scss ./public/style.css",
+    "start-local": "node -r dotenv/config server/index.js",
+    "start": "node server/index.js",
+    "heroku-postbuild": "npm run webpack-build && npm run sass-build"
   },
   "author": "Jake Ascher",
   "license": "ISC",
@@ -15,6 +19,7 @@
     "babel-loader": "^6.3.2",
     "babel-preset-es2015": "^6.22.0",
     "babel-preset-react": "^6.23.0",
+    "dotenv": "^7.0.0",
     "webpack": "^2.2.1"
   },
   "dependencies": {
@@ -25,5 +30,8 @@
     "prop-types": "^15.7.2",
     "react": "^15.4.2",
     "react-dom": "^15.4.2"
+  },
+  "engines": {
+    "node": "10.x"
   }
 }
