@@ -28,7 +28,6 @@ class App extends React.Component {
   getWeather(location) {
     axios.get(`/weather?location=${location}`)
       .then((response) => {
-        console.log(response);
         this.setState({
           currentLocation: response.data.formattedAddress,
           temperature: response.data.currently.temperature,
