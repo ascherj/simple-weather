@@ -9,6 +9,7 @@
     "sass-build-dev": "node-sass --watch ./client/src/styles/style.scss ./public/style.css",
     "sass-build": "node-sass ./client/src/styles/style.scss ./public/style.css",
     "start-local": "node -r dotenv/config server/index.js",
+    "start-local-nodemon": "nodemon server/index.js",
     "start": "node server/index.js",
     "heroku-postbuild": "npm run webpack-build && npm run sass-build"
   },
