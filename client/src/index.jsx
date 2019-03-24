@@ -5,6 +5,7 @@ import Search from './components/Search';
 import Weather from './components/Weather';
 import Locations from './components/Locations';
 import Skycon from './components/Skycon';
+import PoweredBy from './components/PoweredBy';
 
 class App extends React.Component {
   constructor(props) {
@@ -110,6 +111,7 @@ class App extends React.Component {
               />
             </div>
           </div>
+          <PoweredBy />
         </div>
       </div>
     );
