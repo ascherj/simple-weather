@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const Weather = (props) => {
   const {
-    location, temperature, currentlySummary, hourlySummary, saveLocation, isSaved,
+    location, temperature, isFahrenheit, currentlySummary, hourlySummary, saveLocation, isSaved,
   } = props;
   const componentClasses = `weather ${!temperature ? 'hidden' : ''}`;
   const buttonClasses = `button is-small is-link is-outlined ${isSaved ? 'hidden' : ''}`;
@@ -13,7 +13,9 @@ const Weather = (props) => {
       <span>
         <strong>
           {temperature}
-          &deg;F&nbsp;
+          &deg;
+          {isFahrenheit ? 'F' : 'C'}
+          &nbsp;
         </strong>
         and&nbsp;
         <strong>{currentlySummary.toLowerCase()}</strong>
@@ -39,6 +41,7 @@ const Weather = (props) => {
 Weather.propTypes = {
   location: PropTypes.string,
   temperature: PropTypes.number,
+  isFahrenheit: PropTypes.bool,
   currentlySummary: PropTypes.string,
   hourlySummary: PropTypes.string,
   saveLocation: PropTypes.func,
@@ -48,6 +51,7 @@ Weather.propTypes = {
 Weather.defaultProps = {
   location: '',
   temperature: NaN,
+  isFahrenheit: true,
   currentlySummary: '',
   hourlySummary: '',
   saveLocation: () => {},

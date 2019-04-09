@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import TempToggle from './components/TempToggle';
 import Search from './components/Search';
 import Weather from './components/Weather';
 import Locations from './components/Locations';
@@ -13,6 +14,7 @@ class App extends React.Component {
     this.state = {
       currentLocation: '',
       temperature: NaN,
+      isFahrenheit: true,
       currentlySummary: '',
       hourlySummary: '',
       locations: [],
@@ -22,16 +24,22 @@ class App extends React.Component {
     this.saveLocation = this.saveLocation.bind(this);
     this.deleteLocation = this.deleteLocation.bind(this);
     this.updateBackgroundColor = this.updateBackgroundColor.bind(this);
+    this.toggleTemp = this.toggleTemp.bind(this);
   }
 
   componentDidMount() {}
 
   getWeather(location) {
+    const { isFahrenheit } = this.state;
     axios.get(`/weather?location=${location}`)
       .then((response) => {
+        let temperature = response.data.currently.temperature;
+        if (!isFahrenheit) {
+          temperature = (temperature - 32) * (5 / 9);
+        }
         this.setState({
           currentLocation: response.data.formattedAddress,
-          temperature: response.data.currently.temperature,
+          temperature: temperature,
           currentlySummary: response.data.currently.summary,
           hourlySummary: response.data.hourly.summary,
           icon: response.data.currently.icon,
@@ -79,9 +87,23 @@ class App extends React.Component {
     document.body.className = color;
   }
 
+  toggleTemp() {
+    const { temperature, isFahrenheit } = this.state;
+    let newTemp;
+    if (isFahrenheit) {
+      newTemp = (temperature - 32) * (5 / 9);
+    } else {
+      newTemp = (temperature * (9 / 5)) + 32;
+    }
+    this.setState({
+      temperature: newTemp,
+      isFahrenheit: !isFahrenheit,
+    });
+  }
+
   render() {
     const {
-      currentLocation, temperature, currentlySummary, hourlySummary, locations, icon,
+      currentLocation, temperature, isFahrenheit, currentlySummary, hourlySummary, locations, icon,
     } = this.state;
 
     const mainColumnClasses = `column ${!locations.length ? 'is-full' : 'is-two-thirds'}`;
@@ -89,6 +111,7 @@ class App extends React.Component {
     return (
       <div className="section">
         <div className="container">
+          <TempToggle toggleTemp={this.toggleTemp} />
           <div className="columns">
             <div className={mainColumnClasses}>
               <h1 className="title is-1">Simple Weather</h1>
@@ -97,6 +120,7 @@ class App extends React.Component {
               <Weather
                 location={currentLocation}
                 temperature={Math.round(temperature)}
+                isFahrenheit={isFahrenheit}
                 currentlySummary={currentlySummary}
                 hourlySummary={hourlySummary}
                 saveLocation={this.saveLocation}

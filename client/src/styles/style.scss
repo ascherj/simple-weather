@@ -51,6 +51,12 @@ body {
   display: none !important;
 }
 
+.temp-toggle {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+}
+
 .search {
   margin-top: 25px;
   input {
