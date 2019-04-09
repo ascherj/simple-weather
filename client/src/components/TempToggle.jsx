@@ -5,7 +5,7 @@ const TempToggle = ({ toggleTemp }) => {
   return (
     <span className="temp-toggle">
       <button type="button" className="button" onClick={toggleTemp}>
-        Toggle F/C
+        Toggle F&deg;/C&deg;
       </button>
     </span>
   );
