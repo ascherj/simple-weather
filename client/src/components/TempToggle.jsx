@@ -12,11 +12,11 @@ const TempToggle = ({ toggleTemp }) => {
 };
 
 TempToggle.propTypes = {
-  toggleTemp: PropTypes.bool,
+  toggleTemp: PropTypes.func,
 };
 
 TempToggle.defaultProps = {
-  toggleTemp: true,
+  toggleTemp: () => {},
 };
 
 export default TempToggle;
