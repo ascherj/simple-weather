@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import { convertToCelsius, convertToFahrenheit } from './utils';
 import TempToggle from './components/TempToggle';
 import Search from './components/Search';
 import Weather from './components/Weather';
@@ -35,7 +36,7 @@ class App extends React.Component {
       .then((response) => {
         let temperature = response.data.currently.temperature;
         if (!isFahrenheit) {
-          temperature = (temperature - 32) * (5 / 9);
+          temperature = convertToCelsius(temperature);
         }
         this.setState({
           currentLocation: response.data.formattedAddress,
@@ -71,7 +72,7 @@ class App extends React.Component {
 
   updateBackgroundColor() {
     const { temperature, isFahrenheit } = this.state;
-    const fahrenheit = isFahrenheit ? temperature : (temperature * (9 / 5)) + 32;
+    const fahrenheit = isFahrenheit ? temperature : convertToFahrenheit(temperature);
     let color;
 
     if (fahrenheit < 20) color = 'temp1';
@@ -92,9 +93,9 @@ class App extends React.Component {
     const { temperature, isFahrenheit } = this.state;
     let newTemp;
     if (isFahrenheit) {
-      newTemp = (temperature - 32) * (5 / 9);
+      newTemp = convertToCelsius(temperature);
     } else {
-      newTemp = (temperature * (9 / 5)) + 32;
+      newTemp = convertToFahrenheit(temperature);
     }
     this.setState({
       temperature: newTemp,
