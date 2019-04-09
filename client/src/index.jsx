@@ -70,18 +70,19 @@ class App extends React.Component {
   }
 
   updateBackgroundColor() {
-    const { temperature } = this.state;
+    const { temperature, isFahrenheit } = this.state;
+    const fahrenheit = isFahrenheit ? temperature : (temperature * (9 / 5)) + 32;
     let color;
 
-    if (temperature < 20) color = 'temp1';
-    else if (temperature < 30) color = 'temp2';
-    else if (temperature < 40) color = 'temp3';
-    else if (temperature < 50) color = 'temp4';
-    else if (temperature < 60) color = 'temp5';
-    else if (temperature < 70) color = 'temp6';
-    else if (temperature < 80) color = 'temp7';
-    else if (temperature < 90) color = 'temp8';
-    else if (temperature < 100) color = 'temp9';
+    if (fahrenheit < 20) color = 'temp1';
+    else if (fahrenheit < 30) color = 'temp2';
+    else if (fahrenheit < 40) color = 'temp3';
+    else if (fahrenheit < 50) color = 'temp4';
+    else if (fahrenheit < 60) color = 'temp5';
+    else if (fahrenheit < 70) color = 'temp6';
+    else if (fahrenheit < 80) color = 'temp7';
+    else if (fahrenheit < 90) color = 'temp8';
+    else if (fahrenheit < 100) color = 'temp9';
     else color = 'temp10';
 
     document.body.className = color;
