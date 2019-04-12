@@ -113,7 +113,7 @@ class App extends React.Component {
     return (
       <div className="section">
         <div className="container">
-          <TempToggle toggleTemp={this.toggleTemp} />
+          <TempToggle isFahrenheit={isFahrenheit} toggleTemp={this.toggleTemp} />
           <div className="columns">
             <div className={mainColumnClasses}>
               <h1 className="title is-1">Simple Weather</h1>
