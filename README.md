@@ -2,7 +2,7 @@
 
 *A simple weather application.*
 
-![Quick glance at the current and upcoming weather](./screenshots/screenshot_updated.png?raw=true)
+![Quick glance at the current and upcoming weather](./screenshots/screenshot.png?raw=true)
 
 ## Installation
 ***Note**: You will need to supply valid keys for the Google Maps and Dark Sky APIs.*
