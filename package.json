@@ -2,16 +2,14 @@
   "name": "simple-weather",
   "version": "1.0.0",
   "description": "A simple weather app.",
-  "main": "index.js",
   "scripts": {
     "webpack-build-dev": "webpack -d --watch",
     "webpack-build": "webpack -p",
     "sass-build-dev": "node-sass --watch ./client/src/styles/style.scss ./public/style.css",
     "sass-build": "node-sass ./client/src/styles/style.scss ./public/style.css",
-    "start-local": "node -r dotenv/config server/index.js",
-    "start-local-nodemon": "nodemon server/index.js",
-    "start": "node server/index.js",
-    "heroku-postbuild": "npm run webpack-build && npm run sass-build"
+    "start-local": "NODE_ENV='dev' nodemon -r dotenv/config server/server-local.js",
+    "start": "node server/server.js",
+    "build": "npm run webpack-build && npm run sass-build"
   },
   "author": "Jake Ascher",
   "license": "ISC",
@@ -27,6 +25,7 @@
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.13.0",
     "prettier": "^1.18.2",
+    "serverless-http": "^2.3.0",
     "webpack": "^2.2.1"
   },
   "dependencies": {
