@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const serverless = require('serverless-http');
-const { googleMapsRequest, darkSkyRequest } = require('./utils');
+const { googleMapsRequest, darkSkyRequest } = require('../server/utils');
 
 const app = express();
 const router = express.Router();
