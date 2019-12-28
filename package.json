@@ -27,6 +27,7 @@
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.13.0",
     "prettier": "^1.18.2",
+    "serverless-http": "^2.3.0",
     "webpack": "^2.2.1"
   },
   "dependencies": {
