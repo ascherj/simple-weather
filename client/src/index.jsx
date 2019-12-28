@@ -19,7 +19,7 @@ class App extends React.Component {
       currentlySummary: '',
       hourlySummary: '',
       locations: [],
-      icon: '',
+      icon: ''
     };
     this.getWeather = this.getWeather.bind(this);
     this.saveLocation = this.saveLocation.bind(this);
@@ -32,21 +32,25 @@ class App extends React.Component {
 
   getWeather(location) {
     const { isFahrenheit } = this.state;
-    axios.get(`/weather?location=${location}`)
+    axios
+      .get(`/.netlify/functions/server/weather?location=${location}`)
       .then((response) => {
         let temperature = response.data.currently.temperature;
         if (!isFahrenheit) {
           temperature = convertToCelsius(temperature);
         }
-        this.setState({
-          currentLocation: response.data.formattedAddress,
-          temperature: temperature,
-          currentlySummary: response.data.currently.summary,
-          hourlySummary: response.data.hourly.summary,
-          icon: response.data.currently.icon,
-        }, () => {
-          this.updateBackgroundColor();
-        });
+        this.setState(
+          {
+            currentLocation: response.data.formattedAddress,
+            temperature: temperature,
+            currentlySummary: response.data.currently.summary,
+            hourlySummary: response.data.hourly.summary,
+            icon: response.data.currently.icon
+          },
+          () => {
+            this.updateBackgroundColor();
+          }
+        );
       })
       .catch((err) => {
         console.error(err);
@@ -57,7 +61,7 @@ class App extends React.Component {
     const { locations } = this.state;
     locations.push(location);
     this.setState({
-      locations,
+      locations
     });
   }
 
@@ -66,13 +70,15 @@ class App extends React.Component {
     const indexToDelete = locations.indexOf(location);
     locations.splice(indexToDelete, 1);
     this.setState({
-      locations,
+      locations
     });
   }
 
   updateBackgroundColor() {
     const { temperature, isFahrenheit } = this.state;
-    const fahrenheit = isFahrenheit ? temperature : convertToFahrenheit(temperature);
+    const fahrenheit = isFahrenheit
+      ? temperature
+      : convertToFahrenheit(temperature);
     let color;
 
     if (fahrenheit < 20) color = 'temp1';
@@ -99,21 +105,32 @@ class App extends React.Component {
     }
     this.setState({
       temperature: newTemp,
-      isFahrenheit: !isFahrenheit,
+      isFahrenheit: !isFahrenheit
     });
   }
 
   render() {
     const {
-      currentLocation, temperature, isFahrenheit, currentlySummary, hourlySummary, locations, icon,
+      currentLocation,
+      temperature,
+      isFahrenheit,
+      currentlySummary,
+      hourlySummary,
+      locations,
+      icon
     } = this.state;
 
-    const mainColumnClasses = `column ${!locations.length ? 'is-full' : 'is-two-thirds'}`;
+    const mainColumnClasses = `column ${
+      !locations.length ? 'is-full' : 'is-two-thirds'
+    }`;
 
     return (
       <div className="section">
         <div className="container">
-          <TempToggle isFahrenheit={isFahrenheit} toggleTemp={this.toggleTemp} />
+          <TempToggle
+            isFahrenheit={isFahrenheit}
+            toggleTemp={this.toggleTemp}
+          />
           <div className="columns">
             <div className={mainColumnClasses}>
               <h1 className="title is-1">Simple Weather</h1>
