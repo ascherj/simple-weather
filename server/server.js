@@ -1,17 +1,16 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
+const serverless = require('serverless-http');
 const { googleMapsRequest, darkSkyRequest } = require('./utils');
 
 const app = express();
-const port = process.env.PORT || 3000;
+const router = express.Router();
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+const routerBasePath =
+  process.env.NODE_ENV === 'dev' ? '/' : '/.netlify/functions/server';
 
-app.use(express.static(path.join(__dirname, '/../public')));
-
-app.get('/weather', (req, res) => {
+router.get('/weather', (req, res) => {
   const { location } = req.query;
   let formattedAddress;
 
@@ -30,6 +29,11 @@ app.get('/weather', (req, res) => {
     });
 });
 
-app.listen(port, () => {
-  console.log(`listening on port ${port}`);
-});
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(routerBasePath, router);
+app.use(express.static(path.join(__dirname, '../public')));
+
+module.exports = app;
+module.exports.handler = serverless(app);
