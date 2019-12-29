@@ -8,8 +8,7 @@
     "sass-build-dev": "node-sass --watch ./client/src/styles/style.scss ./public/style.css",
     "sass-build": "node-sass ./client/src/styles/style.scss ./public/style.css",
     "start-local": "NODE_ENV='dev' nodemon -r dotenv/config server/server-local.js",
-    "start": "node server/server.js",
-    "build": "npm run webpack-build && npm run sass-build"
+    "build": "npm run webpack-build && npm run sass-build && netlify-lambda build functions"
   },
   "author": "Jake Ascher",
   "license": "ISC",
@@ -32,6 +31,7 @@
     "axios": "^0.19.0",
     "body-parser": "^1.17.2",
     "express": "^4.15.0",
+    "netlify-lambda": "^1.6.3",
     "node-sass": "^4.12.0",
     "prop-types": "^15.7.2",
     "react": "^15.4.2",
