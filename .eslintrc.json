@@ -7,8 +7,9 @@
     "prettier",
     "prettier/react"
   ],
+  "parser": "babel-eslint",
   "rules": {
-    "no-console": 1,
+    "no-console": "warn",
     "react/prop-types": 0
   },
   "plugins": [
@@ -31,6 +32,14 @@
   "settings": {
     "react": {
       "version": "detect"
+    },
+    "import/resolver": {
+      "node": {
+        "extensions": [
+          ".js",
+          ".jsx"
+        ]
+      }
     }
   }
 }
