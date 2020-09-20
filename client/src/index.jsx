@@ -8,6 +8,7 @@ import Weather from './components/Weather';
 import Locations from './components/Locations';
 import Skycon from './components/Skycon';
 import PoweredBy from './components/PoweredBy';
+import Http from './http/Http';
 
 class App extends React.Component {
   constructor(props) {
@@ -32,8 +33,8 @@ class App extends React.Component {
 
   getWeather(location) {
     const { isFahrenheit } = this.state;
-    axios
-      .get(`/.netlify/functions/server/weather?location=${location}`)
+  
+    Http.get(`/.netlify/functions/server/weather?location=${location}`)
       .then((response) => {
         let temperature = response.data.currently.temperature;
         if (!isFahrenheit) {
@@ -52,9 +53,7 @@ class App extends React.Component {
           }
         );
       })
-      .catch((err) => {
-        console.error(err);
-      });
+      .catch(err => console.error(err));
   }
 
   saveLocation(location) {
